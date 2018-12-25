@@ -174,7 +174,32 @@ export default {
           }
         }
       }
+     },
+     modifyToolValue(index,upIndex,downIndex){
+       let indexObj = this.isFN(index);
+       let upObj = this.isFN(upIndex);
+
+       
+     },
+     isFN(index){
+      let nowLet ;
+      
+      for(let i = 0; i < this.toolValue.length; i++){
+         if(this.toolValue[i].nowIndex == upIndex){
+           // 存在
+           nowLet = this.toolValue[i];
+           break;
+         }else{
+           if(i == this.toolValue.length - 1){
+            // 不存在
+            nowLet = null;
+           }
+         }
+       }
+
+       return nowLet;
      }
+
   }
 }
 </script>

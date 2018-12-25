@@ -10,7 +10,7 @@
          <div class="WT-btn">
             <span>删除</span> 
             <span>复制</span> 
-            <span>上移</span> 
+            <span v-on:click="upMove(index)">上移</span> 
             <span>下移</span> 
             <span v-on:click.stop="showTool(index)">编辑{{index}}</span>
          </div>
@@ -74,6 +74,11 @@ export default {
           break;
         }
       }
+    },
+    upMove(index){
+      let upIndex = index-1;
+      let downIndex = index + 1;
+      
     }
   }
 }
