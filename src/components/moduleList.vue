@@ -1,20 +1,22 @@
 <template>
   <div class="moduleList">
     组件列表
-    <textBox />
+    <div class="title">文本</div>
+    <ul>
+      <li>标题</li>
+      <li>副标题</li>
+      <li>段落</li>
+      <li>链接</li>
+    </ul>
   </div>
 </template>
 
 <script>
-import textBox from './textBox';
 
 export default {
   name: 'moduleList',
   props: {
     msg: String
-  },
-  components: {
-    textBox
   }
 }
 </script>
@@ -26,8 +28,15 @@ export default {
   top: 0;
   bottom: 0;
   left: 0;
-  width: 400px;
+  width: 200px;
   background-color: rgba(0,0,0,0.8);
   color: #fff;
+  font-size: 16px;
+  .title{
+    font-size: 16px;
+  }
+  li{
+    font-size: 16px;
+  }
  }
 </style>

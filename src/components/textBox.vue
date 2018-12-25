@@ -1,10 +1,8 @@
 <!-- 文本框组件 -->
 
 <template>
-  <div class="textBox">
-    <textarea>
-      输入文本框
-    </textarea>
+  <div class="textBox" contenteditable="true"   @input="changeText">
+    
   </div>
 </template>
 
@@ -13,10 +11,33 @@ export default {
   name: 'textBox',
   props: {
     msg: String
+  },
+  data () {
+    return {
+      message: ""
+    }
+  },
+  created() {
+    
+  },
+  methods:{
+    changeText(){
+      this.message = this.$el.innerHTML;
+      this.$emit('input',this.message);
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
-
+.textBox{
+   width: 550px;
+   height: 200px;
+   border: 1px solid #ccc;
+   background-color: #ffffff;
+   margin: 0 auto;
+   margin-top: 20px;
+   overflow: auto;
+   font-size: 16px;
+ }
 </style>
