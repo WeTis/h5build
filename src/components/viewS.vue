@@ -5,7 +5,7 @@
     <div class="view" >
        <div v-bind:class="{borderBox: index == num}" v-for="(item,index) in msg" class="WT-view" v-on:click.stop="clickBox(index)" v-on:keyup.delete.native="deleteText(index)">
          <div class="WT-item" v-html="item" 
-        
+         v-bind:style="isstyle(index)"
          ></div>
          <div class="WT-btn">
             <span>删除</span> 
@@ -15,7 +15,7 @@
             <span v-on:click.stop="showTool(index)">编辑{{index}}</span>
          </div>
        </div>
-       <div v-for="(item,index) in style">{{item.value}}{{nowIndex}}</div>
+       <div v-for="(item,index) in styleAll">{{item.nowIndex}}</div>
     </div>
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
     }
   },
   created() {
-    this.setStyle();
+    
   },
   methods:{
     clickBox(num){
@@ -57,10 +57,22 @@ export default {
       this.$parent.showGeneralTool(index);
       console.log("当前"+index);
     },
-    setStyle(){
-
-      for(let i = 0; i < this.style.length; i++){
-        console.log(this.style[i].value);
+    setStyle(item){
+      console.log("样式")
+      let obj = {};
+      for(let i = 0; i < item.length; i++){
+        obj[item[i].inputVal] = item[i].value+item[i].unit
+      }
+      return obj;
+    },
+    isstyle(index){
+      for(let i = 0; i < this.styleAll.length; i++){
+        if(this.styleAll[i].nowIndex == index){
+          console.log(this.setStyle(this.styleAll[i].arr));
+          console.log(this.styleAll[i].arr);
+          return this.setStyle(this.styleAll[i].arr);
+          break;
+        }
       }
     }
   }

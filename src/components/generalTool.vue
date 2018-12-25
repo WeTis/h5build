@@ -1,8 +1,8 @@
 <!-- 通用工具栏 -->
 <template>
   <div class="generalTool" v-bind:class="{hideGeneralToolBOX:hideGeneralTool}">
-    <div class="toolS">
-      <div v-for="item in toolValue">
+    <div class="toolS" v-for="item in toolValue" v-if="item.nowIndex == nowIndex">
+      <div v-for="item in item.arr">
         <span>{{item.name}}</span>
         <input type="" v-bind:name="item.inputVal" v-model="item.value" />
       </div>
@@ -12,7 +12,7 @@
       <span v-if="!hideGeneralTool" v-on:click="getStyle">确定</span>
       <span v-if="!hideGeneralTool">取消</span>
       <span v-on:click="hide" v-if="!hideGeneralTool">收起</span>
-      <span v-on:click="show" v-if="hideGeneralTool">展开</span>
+      <span v-on:click="show(nowIndex)" v-if="hideGeneralTool">展开</span>
     </div>
   </div>
 </template>
@@ -29,48 +29,62 @@ export default {
       message: "",
       toolValue:[
         {
-          name: "宽度",
-          value: "",
-          inputVal: "width"
-        },
-        {
-          name: "高度",
-          value: "",
-          inputVal: "width"
-        },
-        {
-          name: "颜色",
-          value: "",
-          inputVal: "width"
-        },
-        {
-          name: "字号",
-          value: "",
-          inputVal: "width"
-        },
-        {
-          name: "字体",
-          value: "",
-          inputVal: "width"
-        },
-        {
-          name: "背景色",
-          value: "",
-          inputVal: "width"
-        },
-        {
-          name: "行高",
-          value: "",
-          inputVal: "width"
-        },
-        {
-          name: "字重",
-          value: "",
-          inputVal: "width"
-        },
+          nowIndex: 0,
+          arr: [
+            {
+              name: "宽度",
+              value: "",
+              unit: "px",
+              inputVal: "width"
+            },
+            {
+              name: "高度",
+              value: "",
+              unit: "px",
+              inputVal: "height"
+            },
+            {
+              name: "颜色",
+              value: "",
+              unit: "",
+              inputVal: "color"
+            },
+            {
+              name: "字号",
+              value: "",
+              unit: "px",
+              inputVal: "fontSize"
+            },
+            {
+              name: "字体",
+              value: "",
+              unit: "",
+              inputVal: "fontFamily"
+            },
+            {
+              name: "背景色",
+              value: "",
+              unit: "",
+              inputVal: "backgroundColor"
+            },
+            {
+              name: "行高",
+              value: "",
+              unit: "px",
+              inputVal: "lineHeight"
+            },
+            {
+              name: "字重",
+              value: "",
+              unit: "",
+              inputVal: "fontWeight"
+            }
+          ]
+        }
       ],
       hideGeneralTool: true,
       nowIndex: 0,   // 当前编辑的内容的id
+      allData: new Set()
     }
   },
   created() {
@@ -79,20 +93,87 @@ export default {
   methods:{
      // 
      getStyle(){
-      let style = this.toolValue;
-      let index = this.nowIndex;
-      this.$emit("input-style",[style,index]);
+      this.$emit("input-style",this.toolValue);
      },
      hide() {
       this.hideGeneralTool = true;
      },
      show(index) {
-      console.log("传入的"+index);
-       if(index){
-        this.nowIndex = index;
-        
-       }
+       console.log("传入的"+index);
+       this.isIndex(index);
        this.hideGeneralTool = false;
+     },
+     isIndex(index){
+      let obj = {
+        nowIndex: 0,
+          arr: [
+            {
+              name: "宽度",
+              value: "",
+              unit: "px",
+              inputVal: "width"
+            },
+            {
+              name: "高度",
+              value: "",
+              unit: "px",
+              inputVal: "height"
+            },
+            {
+              name: "颜色",
+              value: "",
+              unit: "",
+              inputVal: "color"
+            },
+            {
+              name: "字号",
+              value: "",
+              unit: "px",
+              inputVal: "fontSize"
+            },
+            {
+              name: "字体",
+              value: "",
+              unit: "",
+              inputVal: "fontFamily"
+            },
+            {
+              name: "背景色",
+              value: "",
+              unit: "",
+              inputVal: "backgroundColor"
+            },
+            {
+              name: "行高",
+              value: "",
+              unit: "px",
+              inputVal: "lineHeight"
+            },
+            {
+              name: "字重",
+              value: "",
+              unit: "",
+              inputVal: "fontWeight"
+            }
+          ]
+      };
+      obj.nowIndex = index;
+      // 判断当前要操作的组件是否已经操作过
+      for(let i = 0; i < this.toolValue.length; i++){
+        if(this.toolValue[i].nowIndex == index){
+          // 存在
+          console.log("存在");
+          this.nowIndex = index;
+          break;
+        }else{
+          // 不存在 新建
+          if( i == this.toolValue.length-1){
+            console.log("循环完成");
+            this.nowIndex = index;
+            this.toolValue.push(obj);
+          }
+        }
+      }
      }
   }
 }

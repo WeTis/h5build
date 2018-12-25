@@ -40,8 +40,8 @@ export default {
       this.inputText.push(data);
     },
     getStyle(data){
-      this.viewNowIndex.push(data[1]);
-      this.styleArr.push(...data[0]);
+      this.styleArr = [];
+      this.styleArr.push(...data);
       console.log(data);
     },
     showGeneralTool(index){
