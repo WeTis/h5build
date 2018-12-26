@@ -51,6 +51,25 @@ export default {
     hideGeneralTool(){
        // 触发通用组件方法
        this.$refs.generalTool.hide();
+    },
+    modifyInputText(index,upindex){
+      console.log("触发上移");
+      let nowText = this.inputText[index];
+      let upText = this.inputText[upindex];
+      this.inputText[index] = upText;
+      this.inputText[upindex] = nowText;
+      return this.inputText;
+    },
+    delectInputText(index){
+      this.inputText.splice(index,1);
+      return this.inputText;
+    },
+    triggerDelectToolValue(index){
+      this.styleArr = [];
+     this.styleArr.push(...this.$refs.generalTool.delectToolValue(index));
+    },
+    triggerModifyToolValue(index,upindex){
+     return this.$refs.generalTool.modifyToolValue(index,upindex);
     }
   }
 }

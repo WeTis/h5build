@@ -4,7 +4,7 @@
     <div class="toolS" v-for="item in toolValue" v-if="item.nowIndex == nowIndex">
       <div v-for="item in item.arr">
         <span>{{item.name}}</span>
-        <input type="" v-bind:name="item.inputVal" v-model="item.value" />
+        <input type="" v-bind:name="item.inputVal" v-model="itemInput.val"  v-for="itemInput in item.value"/>
       </div>
       
     </div>
@@ -33,51 +33,87 @@ export default {
           arr: [
             {
               name: "宽度",
-              value: "",
-              unit: "px",
+              value: [{val:""}],
+              unit: ["px"],
               inputVal: "width"
             },
             {
               name: "高度",
-              value: "",
-              unit: "px",
+              value: [{val:""}],
+              unit: ["px"],
               inputVal: "height"
             },
             {
               name: "颜色",
-              value: "",
-              unit: "",
+              value: [{val:""}],
+              unit: [" "],
               inputVal: "color"
             },
             {
               name: "字号",
-              value: "",
-              unit: "px",
+              value: [{val:""}],
+              unit: ["px"],
               inputVal: "fontSize"
             },
             {
               name: "字体",
-              value: "",
-              unit: "",
+              value: [{val:""}],
+              unit: [" "],
               inputVal: "fontFamily"
             },
             {
               name: "背景色",
-              value: "",
-              unit: "",
+              value: [{val:""}],
+              unit: [" "],
               inputVal: "backgroundColor"
             },
             {
               name: "行高",
-              value: "",
-              unit: "px",
+              value: [{val:""}],
+              unit: ["px"],
               inputVal: "lineHeight"
             },
             {
               name: "字重",
-              value: "",
-              unit: "",
+              value: [{val:""}],
+              unit: [""],
               inputVal: "fontWeight"
+            },
+            {
+              name: "边框",
+              value: [{val:""},{val:""},{val:""}],
+              unit: ['px','',''],
+              inputVal: "border"
+            },
+            {
+              name: "圆角",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "borderRadius"
+            },
+            {
+              name: "顶部距离",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "marginTop"
+            },
+            {
+              name: "底部距离",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "marginBottom"
+            },
+            {
+              name: "左边距离",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "marginLeft"
+            },
+            {
+              name: "右边距离",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "marginRight"
             }
           ]
         }
@@ -105,59 +141,66 @@ export default {
      },
      isIndex(index){
       let obj = {
-        nowIndex: 0,
+          nowIndex: 0,
           arr: [
             {
               name: "宽度",
-              value: "",
-              unit: "px",
+              value: [""],
+              unit: ["px"],
               inputVal: "width"
             },
             {
               name: "高度",
-              value: "",
-              unit: "px",
+              value: [""],
+              unit: ["px"],
               inputVal: "height"
             },
             {
               name: "颜色",
-              value: "",
-              unit: "",
+              value: [""],
+              unit: [""],
               inputVal: "color"
             },
             {
               name: "字号",
-              value: "",
-              unit: "px",
+              value: [""],
+              unit: [""],
               inputVal: "fontSize"
             },
             {
               name: "字体",
-              value: "",
-              unit: "",
+              value: [""],
+              unit: [""],
               inputVal: "fontFamily"
             },
             {
               name: "背景色",
-              value: "",
-              unit: "",
+              value: [""],
+              unit: [""],
               inputVal: "backgroundColor"
             },
             {
               name: "行高",
-              value: "",
-              unit: "px",
+              value: [""],
+              unit: ["px"],
               inputVal: "lineHeight"
             },
             {
               name: "字重",
-              value: "",
-              unit: "",
+              value: [""],
+              unit: [""],
               inputVal: "fontWeight"
+            },
+            {
+              name: "边框",
+              value: ['','',''],
+              unit: ['px'],
+              inputVal: "border"
             }
           ]
-      };
+        };
       obj.nowIndex = index;
+      console.log(this.toolValue);
       // 判断当前要操作的组件是否已经操作过
       for(let i = 0; i < this.toolValue.length; i++){
         if(this.toolValue[i].nowIndex == index){
@@ -175,11 +218,69 @@ export default {
         }
       }
      },
-     modifyToolValue(index,upIndex,downIndex){
-       let indexObj = this.isFN(index);
-       let upObj = this.isFN(upIndex);
-
+     delectToolValue(index){
+      console.log(index);
+      let nowBox = this.toolValue.findIndex((item) => {
+         return item.nowIndex == index;
+       });
+      let relativeBox = this.toolValue.findIndex((item) => {
+         return item.nowIndex == index+1;
+       });
+       console.log(nowBox,relativeBox);
+       if(nowBox != -1){
+          console.log("存在用");
+          this.toolValue.splice(nowBox,1);
+          console.log(relativeBox);
+       }
+       if(relativeBox != -1){
+          console.log("存在");
+          this.toolValue[nowBox].nowIndex = index;
+       }
        
+      
+       console.log(this.toolValue);
+       
+       return this.toolValue;
+     },
+     modifyToolValue(index,upIndex){
+       let indexObj = this.toolValue.find((item) => {
+         return item.nowIndex == index;
+       });
+
+       let upObj = this.toolValue.find((item) => {
+         return item.nowIndex == upIndex;
+       });
+       // 移动的
+       let nowBox = this.toolValue.findIndex((item) => {
+         return item.nowIndex == index;
+       });
+       // 相对移动的
+       let relativeBox = this.toolValue.findIndex((item) => {
+         return item.nowIndex == upIndex;
+       });
+       if(nowBox != -1){
+        // 存在
+        if(relativeBox != -1){
+          // 相对的也存在
+          this.toolValue[nowBox] = upObj;
+          this.toolValue[nowBox].nowIndex = index;
+          this.toolValue[relativeBox] = indexObj;
+          this.toolValue[relativeBox].nowIndex = upIndex;
+        }else{
+          // 相对的不存在
+          this.toolValue[nowBox].nowIndex = upIndex;
+        }
+       }else{
+        // 不存在
+         if(relativeBox != -1){
+          // 相对的存在
+          this.toolValue[relativeBox].nowIndex = index;
+
+        }else{
+        }
+       }
+
+       return this.toolValue;
      },
      isFN(index){
       let nowLet ;
@@ -221,7 +322,7 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     >div{
-      width: 140px;
+      min-width: 140px;
       margin-bottom: 20px;
       span{
         display: inline-block;
@@ -229,7 +330,7 @@ export default {
         height: 30px;
         line-height: 30px;
         text-align: right;
-        font-size: 16px;
+        font-size: 12px;
         color: #fff;
       }
       input{

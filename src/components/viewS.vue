@@ -3,15 +3,15 @@
     <img src="../assets/top.jpg" class="top" />
 
     <div class="view" >
-       <div v-bind:class="{borderBox: index == num}" v-for="(item,index) in msg" class="WT-view" v-on:click.stop="clickBox(index)" v-on:keyup.delete.native="deleteText(index)">
+       <div v-bind:class="{borderBox: index == num}" v-for="(item,index) in TextArry" class="WT-view" v-on:click.stop="clickBox(index)">
          <div class="WT-item" v-html="item" 
          v-bind:style="isstyle(index)"
          ></div>
          <div class="WT-btn">
-            <span>删除</span> 
+            <span v-on:click.stop="removeBox(index)">删除</span> 
             <span>复制</span> 
-            <span v-on:click="upMove(index)">上移</span> 
-            <span>下移</span> 
+            <span v-on:click.stop="upMove(index)" v-if="index != 0">上移</span> 
+            <span v-on:click.stop="downMove(index)" v-if="index != TextArry.length-1">下移</span> 
             <span v-on:click.stop="showTool(index)">编辑{{index}}</span>
          </div>
        </div>
@@ -31,7 +31,7 @@ export default {
   },
   data() {
     return {
-      TextArry: [],
+      TextArry: this.msg,
       num: null,
       style: this.styleAll,
 
@@ -47,10 +47,12 @@ export default {
     },
     deleteText(num){
       console.log("删除键")
-      this.msg.splice(num,1);
+      this.TextArry.splice(num,1);
     },
     hideAll(){
+      console.log("asdhaskjd");
       this.num = null;
+      console.log(this.num);
       this.$parent.hideGeneralTool();
     },
     showTool(index){
@@ -61,8 +63,15 @@ export default {
       console.log("样式")
       let obj = {};
       for(let i = 0; i < item.length; i++){
-        obj[item[i].inputVal] = item[i].value+item[i].unit
+        let value = "";
+        for(let j = 0; j < item[i].value.length; j++){
+          value += item[i].value[j].val+item[i].unit[j]+" ";
+
+        }
+
+        obj[item[i].inputVal] = value;
       }
+      console.log(obj);
       return obj;
     },
     isstyle(index){
@@ -76,9 +85,30 @@ export default {
       }
     },
     upMove(index){
+      // 上移
       let upIndex = index-1;
-      let downIndex = index + 1;
-      
+      this.num = upIndex;
+      // this.TextArry = this.$parent.modifyInputText(index,upIndex);
+      this.$set(this.TextArry,0, ...this.$parent.modifyInputText(index,upIndex));
+      this.$parent.triggerModifyToolValue(index,upIndex);
+      this.$forceUpdate();
+    },
+    downMove(index){
+      // 下移
+      let upIndex = index+1;
+      this.num = upIndex;
+   
+      this.TextArry = this.$parent.modifyInputText(index,upIndex);
+      this.$parent.triggerModifyToolValue(index,upIndex);
+    },
+    removeBox(index){
+      this.num = null;
+      // 删除组件
+      this.TextArry = this.$parent.delectInputText(index);
+      // 删除样式
+      console.log(this.$parent.triggerDelectToolValue(index));
+      console.log(this.styleAll);
+
     }
   }
 }
@@ -104,6 +134,9 @@ export default {
   }
   .WT-item{
     font-size: 16px;
+ 
+      word-wrap: break-word;
+    
     div{
       font-size: 16px;
     }
