@@ -66,7 +66,7 @@ export default {
     },
     triggerDelectToolValue(index){
       this.styleArr = [];
-     this.styleArr.push(...this.$refs.generalTool.delectToolValue(index));
+      this.styleArr.push(...this.$refs.generalTool.delectToolValue(index));
     },
     triggerModifyToolValue(index,upindex){
      return this.$refs.generalTool.modifyToolValue(index,upindex);
