@@ -114,6 +114,12 @@ export default {
               value: [{val:""}],
               unit: ['px'],
               inputVal: "marginRight"
+            },
+            {
+              name: "右边距离",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "marginRight"
             }
           ]
         }
