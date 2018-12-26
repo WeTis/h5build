@@ -4,6 +4,7 @@
     <viewS ref="viewS" v-bind:msg="inputText" v-bind:nowIndex="viewNowIndex" v-bind:styleAll="styleArr"/>
     <bounced v-on:input-text="getInputText"/>
     <generalTool ref="generalTool" v-on:input-style="getStyle"/>
+     <imgBox />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import moduleList from './moduleList';
 import viewS from './viewS';
 import bounced from './bounced';
 import generalTool from './generalTool';
+import imgBox from './imgBox';
 
 export default {
   name: 'mainAPP',
@@ -22,7 +24,8 @@ export default {
     moduleList,
     viewS,
     bounced,
-    generalTool
+    generalTool,
+    imgBox
   },
   data () {
     return {
@@ -70,6 +73,10 @@ export default {
     },
     triggerModifyToolValue(index,upindex){
      return this.$refs.generalTool.modifyToolValue(index,upindex);
+    },
+    addImg(dom){
+      this.inputText.push(dom);
+      
     }
   }
 }
