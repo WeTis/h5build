@@ -2,32 +2,41 @@
   <div class="viewS" v-on:click.stop="hideAll" >
     <img src="../assets/top.jpg" class="top" />
 
-    <div class="view" >
-       <div v-bind:class="{borderBox: index == num}" v-for="(item,index) in TextArry" class="WT-view" v-on:click.stop="clickBox(index)">
-         <div class="WT-item" v-html="item" 
-         v-bind:style="isstyle(index)"
-         ></div>
-         <div class="WT-btn">
-            <span v-on:click.stop="removeBox(index)">删除</span> 
-            <span>复制</span> 
-            <span v-on:click.stop="upMove(index)" v-if="index != 0">上移</span> 
-            <span v-on:click.stop="downMove(index)" v-if="index != TextArry.length-1">下移</span> 
-            <span v-on:click.stop="showTool(index)">编辑{{index}}</span>
+    <div class="view">
+       <div id="my-node">
+         <div  v-bind:class="{borderBox: index == num}" v-for="(item,index) in TextArry" class="WT-view" v-on:click.stop="clickBox(index)" v-bind:style="isstyle(index)">
+             <templateHtml v-bind:msg="item" v-bind:styleHtml="isstyle(index)" >
+             </templateHtml>
+           <div class="WT-btn">
+              <span v-on:click.stop="removeBox(index)">删除</span> 
+              <span>复制</span> 
+              <span v-on:click.stop="upMove(index)" v-if="index != 0">上移</span> 
+              <span v-on:click.stop="downMove(index)" v-if="index != TextArry.length-1">下移</span> 
+              <span v-on:click.stop="showTool(index)">编辑{{index}}</span>
+           </div>
          </div>
        </div>
-       <div v-for="(item,index) in styleAll">{{item.nowIndex}}</div>
     </div>
+
+    <div class="output" v-on:click="outputHtml">查看html</div>
+    <div class="outputImg" v-on:click="outputImg">下载图片</div>
   </div>
 </template>
 
 <script>
-
+import templateHtml from './templateHtml';
+import domtoimage from 'dom-to-image';
+import $ from 'jquery';
+import saveAs from 'file-saver';
 export default {
   name: 'viewS',
   props: {
     msg: Array,
     styleAll: Array,
     nowIndex: Array
+  },
+  components: {
+    templateHtml
   },
   data() {
     return {
@@ -41,6 +50,38 @@ export default {
     
   },
   methods:{
+    outputImg(){
+      let props = { 
+      width:375*2,
+      height: $("#my-node").height() * 2,
+      style:{ 
+      'transform':'scale(2)',
+      'transform-origin':'top left' 
+      } 
+    } 
+    console.log($("#my-node").height());
+    domtoimage.toBlob(document.getElementById('my-node'),props)
+    .then(function (blob) {
+        window.saveAs(blob, 'my-node.png');
+    });
+    },
+    outputHtml(){
+       console.log($(".view").html())
+       $.ajax({
+        url: '/api/imooc/lib/outHtml.php',
+        type: "POST",
+        data: {
+          content: $(".view").html()
+        },
+        dataType: 'JSON',
+        success: (res) => {
+           console.log(res);
+           if(res.status = 90000){
+            window.open(res.src,"_blank","toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=375, height=667");
+           }
+        }
+       })
+    },
     clickBox(num){
       this.num = num;
       this.$parent.hideGeneralTool();
@@ -144,8 +185,38 @@ export default {
   .WT-btn{
     display: none;
   }
+  .output{
+    width: 100px;
+    height: 40px;
+    background-color: #67c23a;
+    line-height: 40px;
+    text-align: center;
+    position:absolute;
+    top: 50%;
+    left: -120px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .outputImg{
+    width: 100px;
+    height: 40px;
+    background-color: #67c23a;
+    line-height: 40px;
+    text-align: center;
+    position:absolute;
+    top: 50%;
+    left: -120px;
+    margin-top: 80px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .WT-view{
+    position:relative;
+  }
   .borderBox{
-    position: relative;
+    // position: relative;
     border: 1px dashed #4e9dee;
     .WT-btn{
       position: absolute;

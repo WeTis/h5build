@@ -120,6 +120,36 @@ export default {
               value: [{val:""}],
               unit: ['px'],
               inputVal: "marginRight"
+            },
+            {
+              name: "定位",
+              value: [{val:""}],
+              unit: [''],
+              inputVal: "position"
+            },
+            {
+              name: "top",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "top"
+            },
+            {
+              name: "left",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "left"
+            },
+            {
+              name: "bottom",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "bottom"
+            },
+            {
+              name: "right",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "right"
             }
           ]
         }
@@ -151,57 +181,123 @@ export default {
           arr: [
             {
               name: "宽度",
-              value: [""],
+              value: [{val:""}],
               unit: ["px"],
               inputVal: "width"
             },
             {
               name: "高度",
-              value: [""],
+              value: [{val:""}],
               unit: ["px"],
               inputVal: "height"
             },
             {
               name: "颜色",
-              value: [""],
-              unit: [""],
+              value: [{val:""}],
+              unit: [" "],
               inputVal: "color"
             },
             {
               name: "字号",
-              value: [""],
-              unit: [""],
+              value: [{val:""}],
+              unit: ["px"],
               inputVal: "fontSize"
             },
             {
               name: "字体",
-              value: [""],
-              unit: [""],
+              value: [{val:""}],
+              unit: [" "],
               inputVal: "fontFamily"
             },
             {
               name: "背景色",
-              value: [""],
-              unit: [""],
+              value: [{val:""}],
+              unit: [" "],
               inputVal: "backgroundColor"
             },
             {
               name: "行高",
-              value: [""],
+              value: [{val:""}],
               unit: ["px"],
               inputVal: "lineHeight"
             },
             {
               name: "字重",
-              value: [""],
+              value: [{val:""}],
               unit: [""],
               inputVal: "fontWeight"
             },
             {
               name: "边框",
-              value: ['','',''],
-              unit: ['px'],
+              value: [{val:""},{val:""},{val:""}],
+              unit: ['px','',''],
               inputVal: "border"
+            },
+            {
+              name: "圆角",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "borderRadius"
+            },
+            {
+              name: "顶部距离",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "marginTop"
+            },
+            {
+              name: "底部距离",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "marginBottom"
+            },
+            {
+              name: "左边距离",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "marginLeft"
+            },
+            {
+              name: "右边距离",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "marginRight"
+            },
+            {
+              name: "右边距离",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "marginRight"
+            },
+            {
+              name: "定位",
+              value: [{val:""}],
+              unit: [''],
+              inputVal: "position"
+            },
+            {
+              name: "top",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "top"
+            },
+            {
+              name: "left",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "left"
+            },
+            {
+              name: "bottom",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "bottom"
+            },
+            {
+              name: "right",
+              value: [{val:""}],
+              unit: ['px'],
+              inputVal: "right"
             }
           ]
         };

@@ -22,7 +22,7 @@ export default {
   },
   methods:{
     changeText(){
-      this.message = this.$el.innerHTML;
+      this.message = {tmp:this.$el.innerHTML,type:'div'};
       this.$emit('input',this.message);
     }
   }

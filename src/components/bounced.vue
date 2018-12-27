@@ -37,8 +37,8 @@ export default {
   data () {
     return {
       message: "",
-      BouncedShow: false,
-      toolsCaleShow: false
+      BouncedShow: true,
+      toolsCaleShow: true
     }
   },
   created() {

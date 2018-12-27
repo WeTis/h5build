@@ -5,6 +5,7 @@
     <bounced v-on:input-text="getInputText"/>
     <generalTool ref="generalTool" v-on:input-style="getStyle"/>
      <imgBox />
+     <btn />
   </div>
 </template>
 
@@ -14,7 +15,7 @@ import viewS from './viewS';
 import bounced from './bounced';
 import generalTool from './generalTool';
 import imgBox from './imgBox';
-
+import btn from './btn';
 export default {
   name: 'mainAPP',
   props: {
@@ -25,7 +26,8 @@ export default {
     viewS,
     bounced,
     generalTool,
-    imgBox
+    imgBox,
+    btn
   },
   data () {
     return {

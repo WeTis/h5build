@@ -36,7 +36,8 @@ export default {
         reader.onload = (e) => {
             console.log(reader.result);
             this.src = reader.result;
-            this.$parent.addImg('<img  src="'+this.src+'" />');
+            let m = {tmp:this.src,type:'img'};
+            this.$parent.addImg(m);
         }
     },
     changeText(){
@@ -53,13 +54,14 @@ export default {
    width: 600px;
    height: 600px;
    top: 50%;
-    left: 50%;
+   left: 50%;
     margin-top: -150px;
     margin-left: -300px;
         transform: scale(0.1);
     transform-origin: 600px 0;
     overflow: hidden;
     background-color: #fff;
+        z-index: -1;
     img{
       display: block;
       width: 100%;
