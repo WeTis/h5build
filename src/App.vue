@@ -53,7 +53,9 @@ body *{-webkit-tap-highlight-color:rgba(0,0,0,0);tap-highlight-color:rgba(0,0,0,
 input,textarea,select{outline: none; -webkit-appearance:none;border: none;}
 .clearOver{overflow: hidden; text-overflow:ellipsis; white-space: nowrap;}
 
-
+html{
+  font-size: 37.5px;
+}
 #app{
   position: fixed;
   top: 0;
@@ -64,7 +66,7 @@ input,textarea,select{outline: none; -webkit-appearance:none;border: none;}
 }
 .viewS{
   *{
-    max-width: 100% !important;
+    max-width: 375px !important;
   }
   /*img{
     width: 

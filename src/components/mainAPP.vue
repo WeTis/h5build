@@ -34,6 +34,7 @@ export default {
        inputText: [],
        styleArr: [],
        viewNowIndex: [],
+       indexNN: 0,
     }
   },
   created() {
@@ -42,6 +43,7 @@ export default {
   methods:{
     getInputText(data){
       console.log(data);
+      data.numIndex = this.indexNN++;
       this.inputText.push(data);
     },
     getStyle(data){
@@ -63,6 +65,9 @@ export default {
       let upText = this.inputText[upindex];
       this.inputText[index] = upText;
       this.inputText[upindex] = nowText;
+      // this.$set(this.inputText,index, upText);
+      // this.$set(this.inputText,upindex, nowText);
+      console.log(this.inputText);
       return this.inputText;
     },
     delectInputText(index){
@@ -75,8 +80,11 @@ export default {
     },
     triggerModifyToolValue(index,upindex){
      return this.$refs.generalTool.modifyToolValue(index,upindex);
+      // this.styleArr = [];
+      // this.styleArr.push(...this.$refs.generalTool.modifyToolValue(index,upindex));
     },
     addImg(dom){
+      dom.numIndex = this.indexNN++;
       this.inputText.push(dom);
       
     }

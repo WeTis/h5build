@@ -1,16 +1,12 @@
 <!-- 模板Html组件 -->
 <template>
-  <!-- <div class="templateHtml" v-bind:class="{templateHtmlBorder: index == num}" v-on:click.stop="clickPartnBox"> -->
-    <div class="WT-item" v-html="msg.tmp" v-bind:class="{templateHtmlBorder: index == num}" v-on:click.stop="clickPartnBox" v-bind:style="styleHtml" v-if="msg.type == 'div' " >
-      
-    </div>
-    <!-- <img v-bind:src="msg.tmp" v-bind:style="styleHtml" style="width: 100%;" v-if="msg.type == 'img' "> -->
-  <!-- </div> -->
+
+      <img  v-on:click.stop="clickPartnBox" v-bind:src="msg.tmp" v-bind:style="styleHtml" style="width: 100%;" v-if="msg.type == 'img' ">
 </template>
 
 <script>
 export default {
-  name: 'templateHtml',
+  name: 'imgTemplate',
   props: {
     msg: Object,
     styleHtml: Object,

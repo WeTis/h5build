@@ -1,7 +1,7 @@
 <!-- 文本框组件 -->
 
 <template>
-  <div class="textBox" contenteditable="true"   @input="changeText">
+  <div class="textBox" contenteditable="true" ref="text"  @input="changeText">
     
   </div>
 </template>
@@ -24,6 +24,12 @@ export default {
     changeText(){
       this.message = {tmp:this.$el.innerHTML,type:'div'};
       this.$emit('input',this.message);
+      console.log("sajdasj");
+
+      
+    },
+    clearText(){
+      this.$refs.text.innerHTML=""
     }
   }
 }

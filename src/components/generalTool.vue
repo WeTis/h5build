@@ -34,13 +34,13 @@ export default {
             {
               name: "宽度",
               value: [{val:""}],
-              unit: ["px"],
+              unit: ["rem"],
               inputVal: "width"
             },
             {
               name: "高度",
               value: [{val:""}],
-              unit: ["px"],
+              unit: ["rem"],
               inputVal: "height"
             },
             {
@@ -52,7 +52,7 @@ export default {
             {
               name: "字号",
               value: [{val:""}],
-              unit: ["px"],
+              unit: ["rem"],
               inputVal: "fontSize"
             },
             {
@@ -70,7 +70,7 @@ export default {
             {
               name: "行高",
               value: [{val:""}],
-              unit: ["px"],
+              unit: ["rem"],
               inputVal: "lineHeight"
             },
             {
@@ -82,43 +82,43 @@ export default {
             {
               name: "边框",
               value: [{val:""},{val:""},{val:""}],
-              unit: ['px','',''],
+              unit: ['rem','',''],
               inputVal: "border"
             },
             {
               name: "圆角",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "borderRadius"
             },
             {
               name: "顶部距离",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "marginTop"
             },
             {
               name: "底部距离",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "marginBottom"
             },
             {
               name: "左边距离",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "marginLeft"
             },
             {
               name: "右边距离",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "marginRight"
             },
             {
               name: "右边距离",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "marginRight"
             },
             {
@@ -130,25 +130,25 @@ export default {
             {
               name: "top",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "top"
             },
             {
               name: "left",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "left"
             },
             {
               name: "bottom",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "bottom"
             },
             {
               name: "right",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "right"
             }
           ]
@@ -181,14 +181,14 @@ export default {
           arr: [
             {
               name: "宽度",
-              value: [{val:""}],
-              unit: ["px"],
+              value: [{val:null}],
+              unit: ["rem"],
               inputVal: "width"
             },
             {
               name: "高度",
               value: [{val:""}],
-              unit: ["px"],
+              unit: ["rem"],
               inputVal: "height"
             },
             {
@@ -200,7 +200,7 @@ export default {
             {
               name: "字号",
               value: [{val:""}],
-              unit: ["px"],
+              unit: ["rem"],
               inputVal: "fontSize"
             },
             {
@@ -218,7 +218,7 @@ export default {
             {
               name: "行高",
               value: [{val:""}],
-              unit: ["px"],
+              unit: ["rem"],
               inputVal: "lineHeight"
             },
             {
@@ -230,43 +230,43 @@ export default {
             {
               name: "边框",
               value: [{val:""},{val:""},{val:""}],
-              unit: ['px','',''],
+              unit: ['rem','',''],
               inputVal: "border"
             },
             {
               name: "圆角",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "borderRadius"
             },
             {
               name: "顶部距离",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "marginTop"
             },
             {
               name: "底部距离",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "marginBottom"
             },
             {
               name: "左边距离",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "marginLeft"
             },
             {
               name: "右边距离",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "marginRight"
             },
             {
               name: "右边距离",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "marginRight"
             },
             {
@@ -278,25 +278,25 @@ export default {
             {
               name: "top",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "top"
             },
             {
               name: "left",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "left"
             },
             {
               name: "bottom",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "bottom"
             },
             {
               name: "right",
               value: [{val:""}],
-              unit: ['px'],
+              unit: ['rem'],
               inputVal: "right"
             }
           ]
@@ -360,14 +360,40 @@ export default {
        let relativeBox = this.toolValue.findIndex((item) => {
          return item.nowIndex == upIndex;
        });
+
        if(nowBox != -1){
         // 存在
         if(relativeBox != -1){
           // 相对的也存在
-          this.toolValue[nowBox] = upObj;
-          this.toolValue[nowBox].nowIndex = index;
-          this.toolValue[relativeBox] = indexObj;
-          this.toolValue[relativeBox].nowIndex = upIndex;
+          console.log("相对的也存在");
+          // this.toolValue[nowBox].arr = [];
+          // this.toolValue[nowBox].arr.push(...upObj.arr);
+          // this.$set(this.toolValue,nowBox, upObj);
+
+          // this.toolValue.splice(nowBox,1,upObj);
+          // this.toolValue.splice(relativeBox,1,indexObj);
+          // this.toolValue[nowBox].nowIndex = index;
+          // this.toolValue[relativeBox].nowIndex = upIndex;
+
+          // this.toolValue.splice(nowBox,1);
+
+          // this.toolValue[nowBox].nowIndex = index;
+          // this.toolValue[relativeBox].arr = [];
+          // this.toolValue[relativeBox].arr.push(...indexObj.arr);
+          
+          let IArr = [];
+          IArr.push(...indexObj.arr);
+          let UArr = [];
+          UArr.push(...upObj.arr);
+          console.log(IArr);
+          console.log(UArr);
+          this.$set(this.toolValue[relativeBox],'arr', IArr);
+          console.log(IArr);
+          console.log(UArr);
+          this.$set(this.toolValue[nowBox],'arr', UArr);
+    
+          // this.toolValue[relativeBox].nowIndex = upIndex;
+
         }else{
           // 相对的不存在
           this.toolValue[nowBox].nowIndex = upIndex;
@@ -381,7 +407,7 @@ export default {
         }else{
         }
        }
-
+       console.log(this.toolValue);
        return this.toolValue;
      },
      isFN(index){

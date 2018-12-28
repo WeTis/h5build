@@ -85,13 +85,13 @@ export default {
        if(this.arrangement == 1){
         for(let i = 0; i < this.num; i++){
           console.log(this.color[i].content);
-            html += '<span style="cursor: pointer;border-radius:5px; margin: 0 10px; flex: 1; color:'+this.color[i].content+'; width: '+this.width[i].content+'px; height: '+this.height[i].content+'px; line-height: '+this.height[i].content+'px; text-align:center;background-color:'+this.bgColor[i].content+'">'+this.text[i].content+'</span>'
+            html += '<span style="cursor: pointer; font-size:0.37rem; border-radius:5px; margin: 0 10px; flex: 1; color:'+this.color[i].content+'; width: '+this.width[i].content/37.5+'rem; height: '+this.height[i].content/37.5+'rem; line-height: '+this.height[i].content/37.5+'rem; text-align:center;background-color:'+this.bgColor[i].content+'">'+this.text[i].content+'</span>'
          }
          html = '<div style="display:flex;flex-direction: row;flex-wrap: wrap;justify-content: space-around;">'+html+'</div>';
        }else if(this.arrangement == 2){
           for(let i = 0; i < this.num; i++){
           console.log(this.color[i].content);
-            html += '<span style="cursor: pointer;margin:10px 0;border-radius:5px; color:'+this.color[i].content+'; width: '+this.width[i].content+'px; height: '+this.height[i].content+'px; line-height: '+this.height[i].content+'px; text-align:center;background-color:'+this.bgColor[i].content+'">'+this.text[i].content+'</span>'
+            html += '<span style="cursor: pointer;font-size:0.37rem; margin:10px 0;border-radius:5px; color:'+this.color[i].content+'; width: '+this.width[i].content/37.5+'rem; height: '+this.height[i].content/37.5+'rem; line-height: '+this.height[i].content/37.5+'rem; text-align:center;background-color:'+this.bgColor[i].content+'">'+this.text[i].content+'</span>'
          }
 
          html = '<div style="display:flex;flex-direction: column;flex-wrap: wrap;align-items: center;">'+html+'</div>';
@@ -171,7 +171,7 @@ export default {
   top: 50%;
   left: 50%;
   margin-top: -250px;
-  margin-left: -300px;
+  margin-left: -250px;
   box-shadow: 0 0 3px 4px rgba(0,0,0,0.2);
    transition: all 0.5s;
   .icon{

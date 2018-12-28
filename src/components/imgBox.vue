@@ -56,7 +56,7 @@ export default {
    top: 50%;
    left: 50%;
     margin-top: -150px;
-    margin-left: -300px;
+    margin-left: -250px;
         transform: scale(0.1);
     transform-origin: 600px 0;
     overflow: hidden;

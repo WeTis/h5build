@@ -9,9 +9,9 @@
     <div class="icon">
       
       <img src="../assets/shouqi.png" v-on:click="shouqiBounced"/>
-      <img src="../assets/close.png" />
+      <img src="../assets/close.png" v-on:click="closeBounced" />
     </div>
-    <textBox v-on:input="getText"/>
+    <textBox v-on:input="getText" ref="textBox"/>
     <div class="tool">
       <span v-on:click="clickY">确定</span>
       <span>取消</span>
@@ -48,7 +48,9 @@ export default {
     clickY(){
       console.log(this.message);
       this.$emit("input-text",this.message);
+       
       this.shouqiBounced();
+      this.$refs.textBox.clearText();
     },
     getText(data){
       this.message = data;
@@ -58,6 +60,13 @@ export default {
         setTimeout(() => {
           this.toolsCaleShow = true;
         },500);
+    },
+    closeBounced(){
+      this.BouncedShow = true;
+        setTimeout(() => {
+          this.toolsCaleShow = true;
+        },500);
+         this.$refs.textBox.clearText();
     },
     showBounced(){
       this.BouncedShow = false;
@@ -77,7 +86,7 @@ export default {
   top: 50%;
   left: 50%;
   margin-top: -250px;
-  margin-left: -300px;
+  margin-left: -250px;
   box-shadow: 0 0 3px 4px rgba(0,0,0,0.2);
    transition: all 0.5s;
   .icon{
