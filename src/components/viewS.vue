@@ -19,6 +19,7 @@
            <templateHtml v-if="item.type == 'div'" v-bind:msg="item" v-bind:index="index" v-bind:num="num" v-bind:styleHtml="isstyle(index)" >
            </templateHtml>
            <imgTemplate v-if="item.type == 'img'" v-bind:msg="item" v-bind:index="index" v-bind:num="num" v-bind:styleHtml="isstyle(index)"></imgTemplate>
+           <topNavTemplate v-if="item.type == 'topNav'" v-bind:msg="item" v-bind:index="index" v-bind:num="num" v-bind:styleHtml="isstyle(index)" ></topNavTemplate>
            <div class="WT-btn" v-bind:class="{borderBox: index == num}">
               <span v-on:click.stop="removeBox(index)">删除</span> 
               <span>复制</span> 
@@ -38,6 +39,7 @@
 <script>
 import templateHtml from './templateHtml';
 import imgTemplate from './imgTemplate';
+import topNavTemplate from './topNavTemplate';
 import domtoimage from 'dom-to-image';
 import $ from 'jquery';
 import saveAs from 'file-saver';
@@ -50,7 +52,8 @@ export default {
   },
   components: {
     templateHtml,
-    imgTemplate
+    imgTemplate,
+    topNavTemplate
   },
   data() {
     return {
@@ -215,6 +218,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../assets/css/base.css";
+
 .viewS{
   position: absolute;
   top: 50%;

@@ -1,0 +1,35 @@
+/*顶部导航基础样式*/
+#my-node .WT-topNav {
+  width: 10rem;
+  height: 1.06rem;
+  line-height: 1.06rem;
+  background-color: #FFF;
+  position: relative;
+}
+#my-node .WT-topNav .WT-left-btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  padding: 0 10px;
+}
+#my-node .WT-topNav .WT-left-btn img {
+  display: block;
+}
+#my-node .WT-topNav .WT-right-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  padding: 0 10px;
+}
+#my-node .WT-topNav .WT-right-btn img {
+  display: block;
+}
+#my-node .WT-topNav .WT-title {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}

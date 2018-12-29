@@ -6,6 +6,7 @@
     <generalTool ref="generalTool" v-on:input-style="getStyle"/>
      <imgBox />
      <btn />
+     <topNavBox />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import bounced from './bounced';
 import generalTool from './generalTool';
 import imgBox from './imgBox';
 import btn from './btn';
+import topNavBox from './topNavBox';
 export default {
   name: 'mainAPP',
   props: {
@@ -27,7 +29,8 @@ export default {
     bounced,
     generalTool,
     imgBox,
-    btn
+    btn,
+    topNavBox
   },
   data () {
     return {
