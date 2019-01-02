@@ -85,13 +85,13 @@ export default {
        if(this.arrangement == 1){
         for(let i = 0; i < this.num; i++){
           console.log(this.color[i].content);
-            html += '<span style="cursor: pointer; font-size:0.37rem; border-radius:5px; margin: 0 10px; flex: 1; color:'+this.color[i].content+'; width: '+this.width[i].content/37.5+'rem; height: '+this.height[i].content/37.5+'rem; line-height: '+this.height[i].content/37.5+'rem; text-align:center;background-color:'+this.bgColor[i].content+'">'+this.text[i].content+'</span>'
+            html += '<span class="WT-btn" style="cursor: pointer; font-size:0.37rem; border-radius:5px; margin: 0 10px; flex: 1; color:'+this.color[i].content+'; width: '+this.width[i].content/37.5+'rem; height: '+this.height[i].content/37.5+'rem; line-height: '+this.height[i].content/37.5+'rem; text-align:center;background-color:'+this.bgColor[i].content+'">'+this.text[i].content+'</span>'
          }
          html = '<div style="display:flex;flex-direction: row;flex-wrap: wrap;justify-content: space-around;">'+html+'</div>';
        }else if(this.arrangement == 2){
           for(let i = 0; i < this.num; i++){
           console.log(this.color[i].content);
-            html += '<span style="cursor: pointer;font-size:0.37rem; margin:10px 0;border-radius:5px; color:'+this.color[i].content+'; width: '+this.width[i].content/37.5+'rem; height: '+this.height[i].content/37.5+'rem; line-height: '+this.height[i].content/37.5+'rem; text-align:center;background-color:'+this.bgColor[i].content+'">'+this.text[i].content+'</span>'
+            html += '<span class="WT-btn" style="cursor: pointer;font-size:0.37rem; margin:10px 0;border-radius:5px; color:'+this.color[i].content+'; width: '+this.width[i].content/37.5+'rem; height: '+this.height[i].content/37.5+'rem; line-height: '+this.height[i].content/37.5+'rem; text-align:center;background-color:'+this.bgColor[i].content+'">'+this.text[i].content+'</span>'
          }
 
          html = '<div style="display:flex;flex-direction: column;flex-wrap: wrap;align-items: center;">'+html+'</div>';
@@ -247,7 +247,7 @@ export default {
         height: 30px;
         line-height: 30px;
         text-align: center;
-        
+        font-size: 16px;
       }
       .bbtn{
         width: 60px;

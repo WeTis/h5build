@@ -89,6 +89,7 @@ export default {
   margin-left: -250px;
   box-shadow: 0 0 3px 4px rgba(0,0,0,0.2);
    transition: all 0.5s;
+       z-index: 99;
   .icon{
     width: 100px;
     height: 50px;

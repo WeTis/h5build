@@ -75,6 +75,7 @@ export default {
     },
     delectInputText(index){
       this.inputText.splice(index,1);
+      // this.triggerDelectToolValue(index);
       return this.inputText;
     },
     triggerDelectToolValue(index){

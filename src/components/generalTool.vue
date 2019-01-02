@@ -92,34 +92,22 @@ export default {
               inputVal: "borderRadius"
             },
             {
-              name: "顶部距离",
-              value: [{val:""}],
-              unit: ['rem'],
-              inputVal: "marginTop"
+              name: "边距",
+              value: [{val:"0"},{val:"0"},{val:"0"},{val:"0"}],
+              unit: ['rem','rem','rem','rem'],
+              inputVal: "margin"
             },
             {
-              name: "底部距离",
-              value: [{val:""}],
-              unit: ['rem'],
-              inputVal: "marginBottom"
+              name: "补白",
+              value: [{val:"0"},{val:"0"},{val:"0"},{val:"0"}],
+              unit: ['rem','rem','rem','rem'],
+              inputVal: "padding"
             },
             {
-              name: "左边距离",
+              name: "内容位置",
               value: [{val:""}],
-              unit: ['rem'],
-              inputVal: "marginLeft"
-            },
-            {
-              name: "右边距离",
-              value: [{val:""}],
-              unit: ['rem'],
-              inputVal: "marginRight"
-            },
-            {
-              name: "右边距离",
-              value: [{val:""}],
-              unit: ['rem'],
-              inputVal: "marginRight"
+              unit: [''],
+              inputVal: "textAlign"
             },
             {
               name: "定位",
@@ -150,7 +138,13 @@ export default {
               value: [{val:""}],
               unit: ['rem'],
               inputVal: "right"
-            }
+            },
+            {
+              name: "层级",
+              value: [{val:""}],
+              unit: [''],
+              inputVal: "zIndex"
+            },
           ]
         }
       ],
@@ -240,34 +234,22 @@ export default {
               inputVal: "borderRadius"
             },
             {
-              name: "顶部距离",
-              value: [{val:""}],
-              unit: ['rem'],
-              inputVal: "marginTop"
+              name: "边距",
+              value: [{val:"0"},{val:"0"},{val:"0"},{val:"0"}],
+              unit: ['rem','rem','rem','rem'],
+              inputVal: "margin"
             },
             {
-              name: "底部距离",
-              value: [{val:""}],
-              unit: ['rem'],
-              inputVal: "marginBottom"
+              name: "补白",
+              value: [{val:"0"},{val:"0"},{val:"0"},{val:"0"}],
+              unit: ['rem','rem','rem','rem'],
+              inputVal: "padding"
             },
             {
-              name: "左边距离",
+              name: "内容位置",
               value: [{val:""}],
-              unit: ['rem'],
-              inputVal: "marginLeft"
-            },
-            {
-              name: "右边距离",
-              value: [{val:""}],
-              unit: ['rem'],
-              inputVal: "marginRight"
-            },
-            {
-              name: "右边距离",
-              value: [{val:""}],
-              unit: ['rem'],
-              inputVal: "marginRight"
+              unit: [''],
+              inputVal: "textAlign"
             },
             {
               name: "定位",
@@ -298,6 +280,12 @@ export default {
               value: [{val:""}],
               unit: ['rem'],
               inputVal: "right"
+            },
+            {
+              name: "层级",
+              value: [{val:""}],
+              unit: [''],
+              inputVal: "zIndex"
             }
           ]
         };
@@ -334,10 +322,17 @@ export default {
           this.toolValue.splice(nowBox,1);
           console.log(relativeBox);
        }
-       if(relativeBox != -1){
-          console.log("存在");
-          this.toolValue[nowBox].nowIndex = index;
+       for(let i = 0; i < this.toolValue.length; i++){
+        if(this.toolValue[i].nowIndex > index){
+          this.toolValue[i].nowIndex = this.toolValue[i].nowIndex-1;
+        }
        }
+       // if(relativeBox != -1){
+       //    console.log("存在");
+       //    this.toolValue[relativeBox].nowIndex = index;
+
+          
+       // }
        
       
        console.log(this.toolValue);
@@ -438,12 +433,13 @@ export default {
    position: absolute;
    right: 0;
    top: 0;
-   width: 300px;
+   width: 380px;
    bottom: 0;
    background-color: rgba(0,0,0,0.8);
     transition: all 0.3s;
+        z-index: 99;
    .toolS{
-    width: 282px;
+    width: 362px;
     margin: 20px auto;
     display: flex;
     flex-wrap: wrap;
@@ -451,7 +447,7 @@ export default {
     justify-content: space-between;
     >div{
       min-width: 140px;
-      margin-bottom: 20px;
+      // margin-bottom: 20px;
       span{
         display: inline-block;
         width: 50px;

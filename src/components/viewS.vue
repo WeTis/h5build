@@ -125,11 +125,16 @@ export default {
         for(let j = 0; j < item[i].value.length; j++){
           console.log(Number.isNaN(Math.ceil(item[i].value[j].val)),item[i].value[j].val)
           if(item[i].value[j].val){
-            if(!Number.isNaN(Math.ceil(item[i].value[j].val))){
+            if(!Number.isNaN(Math.ceil(item[i].value[j].val)) && item[i].inputVal != "zIndex"){
                console.log("数组");
                value += " " + Math.ceil(item[i].value[j].val)/37.5+item[i].unit[j];
             }else{
-              value += " " + item[i].value[j].val+item[i].unit[j];
+              if(new RegExp(/%$/).test(item[i].value[j].val)){
+                 value += " " + item[i].value[j].val; 
+              }else{
+                value += " " + item[i].value[j].val+item[i].unit[j];
+              }
+              
             }
           }else{
             value += " " + item[i].value[j].val+item[i].unit[j];
@@ -250,7 +255,9 @@ export default {
     display: none;
   }
   #my-node{
+    // position: relative;
     position: relative;
+    z-index: 1;
   }
   .output{
     width: 100px;

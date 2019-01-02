@@ -33,3 +33,7 @@
   font-size: 16px;
   font-weight: bold;
 }
+.WT-btn:hover {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
